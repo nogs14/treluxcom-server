@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Stock" table="stock" schema="public" optimistic-lock="version">
+        <id name="codestock" type="string">
+            <column name="codestock" length="50" />
+            <generator class="assigned" />
+        </id>
+        <property name="categorie" type="string">
+            <column name="categorie" length="50" />
+        </property>
+        <property name="quantitetotal" type="java.lang.Integer">
+            <column name="quantitetotal" />
+        </property>
+        <property name="datereception" type="date">
+            <column name="datereception" length="13" />
+        </property>
+        <property name="publier" type="java.lang.Boolean">
+            <column name="publier" />
+        </property>
+        <set name="commandes" table="commande" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codestock" length="50" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Commande" />
+        </set>
+        <set name="produits" table="produit" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codestock" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Produit"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Famille" table="famille" schema="public" optimistic-lock="version">
+        <id name="codefamille" type="string">
+            <column name="codefamille" length="254" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="254" />
+        </property>
+        <property name="libelle" type="string">
+            <column name="libelle" length="254" />
+        </property>
+        <property name="sucre" type="java.lang.Boolean">
+            <column name="sucre" />
+        </property>
+        <property name="alcoolise" type="java.lang.Boolean">
+            <column name="alcoolise" />
+        </property>
+        <property name="gazeuse" type="java.lang.Boolean">
+            <column name="gazeuse" />
+        </property>
+        <property name="degresalcool" type="big_decimal">
+            <column name="degresalcool" precision="131089" scale="0" />
+        </property>
+        <property name="naturel" type="java.lang.Boolean">
+            <column name="naturel" />
+        </property>
+        <property name="mineral" type="java.lang.Boolean">
+            <column name="mineral" />
+        </property>
+        <property name="saveur" type="string">
+            <column name="saveur" length="50" />
+        </property>
+        <property name="format" type="string">
+            <column name="format" length="50" />
+        </property>
+        <property name="quantite" type="java.lang.Integer">
+            <column name="quantite" />
+        </property>
+        <set name="lignecommandes" table="lignecommande" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefamille" length="254" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Lignecommande" />
+        </set>
+        <set name="produits" table="produit" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefamille" length="254" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Produit" />
+        </set>
+        <set name="lignedevises" table="lignedevis" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefamille" length="254" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Lignedevis" />
+        </set>
+        <set name="ressourcemedias" table="ressourcemedia" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefamille" length="254" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Ressourcemedia"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Paniercaissier" table="paniercaissier" schema="public" optimistic-lock="version">
+        <id name="codepanier" type="string">
+            <column name="codepanier" length="50" />
+            <generator class="foreign">
+                <param name="property">panier</param>
+            </generator>
+        </id>
+        <many-to-one name="caissier" class="com.treluxcom.metier.Caissier" lazy="false" fetch="select">
+            <column name="codecaissier" length="40" not-null="true" />
+        </many-to-one>
+        <one-to-one name="panier" class="com.treluxcom.metier.Panier" constrained="true"></one-to-one>
+        <property name="facture" type="string">
+            <column name="facture" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

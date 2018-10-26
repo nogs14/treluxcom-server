@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Boutique" table="boutique" schema="public" optimistic-lock="version">
+        <id name="codeboutique" type="string">
+            <column name="codeboutique" length="40" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="administrateur" class="com.treluxcom.metier.Administrateur" lazy="false" fetch="select">
+            <column name="codeadmin" length="40" not-null="true" />
+        </many-to-one>
+        <property name="telephone" type="string">
+            <column name="telephone" length="50" />
+        </property>
+        <property name="nom" type="string">
+            <column name="nom" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="50" />
+        </property>
+        <property name="ville" type="string">
+            <column name="ville" length="50" />
+        </property>
+        <property name="pays" type="string">
+            <column name="pays" length="50" />
+        </property>
+        <property name="datecreation" type="string">
+            <column name="datecreation" length="40" not-null="true" />
+        </property>
+        <set name="employes" table="employe" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codeboutique" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Employe" />
+        </set>
+    </class>
+</hibernate-mapping>

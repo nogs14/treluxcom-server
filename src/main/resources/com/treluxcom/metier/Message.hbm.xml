@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Message" table="message" schema="public" optimistic-lock="version">
+        <id name="codemessage" type="long">
+            <column name="codemessage" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="groupe" class="com.treluxcom.metier.Groupe" fetch="select">
+            <column name="codegroupe" />
+        </many-to-one>
+        <many-to-one name="personneByCodedestinataire" class="com.treluxcom.metier.Personne" lazy="false" fetch="select">
+            <column name="codedestinataire" length="40" />
+        </many-to-one>
+        <many-to-one name="personneByCodeenvoyeur" class="com.treluxcom.metier.Personne" lazy="false" fetch="select">
+            <column name="codeenvoyeur" length="40" not-null="true" />
+        </many-to-one>
+        <property name="objet" type="string">
+            <column name="objet" length="50" />
+        </property>
+        <property name="contenu" type="string">
+            <column name="contenu" />
+        </property>
+    </class>
+</hibernate-mapping>

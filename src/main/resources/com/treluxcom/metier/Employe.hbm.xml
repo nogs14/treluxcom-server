@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Employe" table="employe" schema="public" optimistic-lock="version">
+        <id name="codepersonne" type="string">
+            <column name="codepersonne" length="40" />
+            <generator class="foreign">
+                <param name="property">personne</param>
+            </generator>
+        </id>
+        <many-to-one name="boutique" class="com.treluxcom.metier.Boutique" lazy="false" fetch="select">
+            <column name="codeboutique" length="40" not-null="true" />
+        </many-to-one>
+        <one-to-one name="personne" class="com.treluxcom.metier.Personne" lazy="false" constrained="true"></one-to-one>
+        <property name="fonction" type="string">
+            <column name="fonction" length="20" not-null="true" />
+        </property>
+        <set name="calendrierservices" table="calendrierservice" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codepersonne" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Calendrierservice" />
+        </set>
+        <one-to-one name="livreur" class="com.treluxcom.metier.Livreur" lazy="false"></one-to-one>
+        <one-to-one name="gerant" class="com.treluxcom.metier.Gerant" lazy="false"></one-to-one>
+        <one-to-one name="caissier" class="com.treluxcom.metier.Caissier" lazy="false"></one-to-one>
+    </class>
+</hibernate-mapping>

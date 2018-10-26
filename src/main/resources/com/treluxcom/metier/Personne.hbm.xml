@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Personne" table="personne" schema="public" optimistic-lock="version">
+        <id name="codepersonne" type="string">
+            <column name="codepersonne" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="prenom" type="string">
+            <column name="prenom" length="50" not-null="true" />
+        </property>
+        <property name="nom" type="string">
+            <column name="nom" length="50" not-null="true" />
+        </property>
+        <property name="datenaiss" type="string">
+            <column name="datenaiss" length="20" />
+        </property>
+        <property name="lieunaiss" type="string">
+            <column name="lieunaiss" length="50" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="50" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="40" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="nationalite" type="string">
+            <column name="nationalite" length="50" />
+        </property>
+        <property name="sexe" type="string">
+            <column name="sexe" length="1" />
+        </property>
+        <property name="login" type="string">
+            <column name="login" length="50" />
+        </property>
+        <property name="motpasse" type="string">
+            <column name="motpasse" length="50" />
+        </property>
+        <property name="droit" type="string">
+            <column name="droit" length="50" />
+        </property>
+        <property name="session" type="java.lang.Boolean">
+            <column name="session" />
+        </property>
+        <property name="nombreconnexion" type="java.lang.Integer">
+            <column name="nombreconnexion" />
+        </property>
+        <property name="codeaccess" type="java.lang.Integer">
+            <column name="codeaccess" />
+        </property>
+        <property name="bloque" type="java.lang.Integer">
+            <column name="bloque" />
+        </property>
+        <property name="photo" type="string">
+            <column name="photo" length="254" />
+        </property>
+        <property name="profil" type="string">
+            <column name="profil" length="20" />
+        </property>
+        <set name="messagesForCodedestinataire" table="message" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codedestinataire" length="40" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Message" />
+        </set>
+        <one-to-one name="employe" class="com.treluxcom.metier.Employe" lazy="false"></one-to-one>
+        <one-to-one name="administrateur" class="com.treluxcom.metier.Administrateur" lazy="false"></one-to-one>
+        <one-to-one name="client" class="com.treluxcom.metier.Client" lazy="false"></one-to-one>
+        <set name="messagesForCodeenvoyeur" table="message" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codeenvoyeur" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Message" />
+        </set>
+        <one-to-one name="fournisseur" class="com.treluxcom.metier.Fournisseur"></one-to-one>
+    </class>
+</hibernate-mapping>

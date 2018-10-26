@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Lignecommande" table="lignecommande" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.treluxcom.metier.LignecommandeId">
+            <key-property name="codecommande" type="string">
+                <column name="codecommande" length="50" />
+            </key-property>
+            <key-property name="codefamille" type="string">
+                <column name="codefamille" length="254" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="commande" class="com.treluxcom.metier.Commande" update="false" insert="false" lazy="false" fetch="select">
+            <column name="codecommande" length="50" not-null="true" />
+        </many-to-one>
+        <many-to-one name="famille" class="com.treluxcom.metier.Famille" update="false" insert="false" lazy="false" fetch="select">
+            <column name="codefamille" length="254" not-null="true" />
+        </many-to-one>
+        <property name="conditionnement" type="java.lang.Integer">
+            <column name="conditionnement" />
+        </property>
+        <property name="quantite" type="java.lang.Integer">
+            <column name="quantite" />
+        </property>
+        <property name="prixunitaire" type="big_decimal">
+            <column name="prixunitaire" precision="12" />
+        </property>
+        <property name="prixtotal" type="big_decimal">
+            <column name="prixtotal" precision="12" />
+        </property>
+        <property name="tva" type="java.lang.Boolean">
+            <column name="tva" />
+        </property>
+    </class>
+</hibernate-mapping>

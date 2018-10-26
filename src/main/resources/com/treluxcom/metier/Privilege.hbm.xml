@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Privilege" table="privilege" schema="public" optimistic-lock="version">
+        <id name="codeprivilege" type="int">
+            <column name="codeprivilege" />
+            <generator class="assigned" />
+        </id>
+        <property name="intitule" type="string">
+            <column name="intitule" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <set name="gerantprivileges" table="gerantprivilege" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codeprivilege" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Gerantprivilege" />
+        </set>
+    </class>
+</hibernate-mapping>

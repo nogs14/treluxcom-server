@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Calendrierservice" table="calendrierservice" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.treluxcom.metier.CalendrierserviceId">
+            <key-property name="codepersonne" type="string">
+                <column name="codepersonne" length="40" />
+            </key-property>
+            <key-property name="codejour" type="int">
+                <column name="codejour" />
+            </key-property>
+            <key-property name="datepriseservice" type="date">
+                <column name="datepriseservice" length="13" />
+            </key-property>
+            <key-property name="heuredebut" type="time">
+                <column name="heuredebut" length="15" />
+            </key-property>
+            <key-property name="heurefin" type="time">
+                <column name="heurefin" length="15" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="employe" class="com.treluxcom.metier.Employe" lazy="false" update="false" insert="false" fetch="select">
+            <column name="codepersonne" length="40" not-null="true" />
+        </many-to-one>
+        <many-to-one name="jour" class="com.treluxcom.metier.Jour" lazy="false" update="false" insert="false" fetch="select">
+            <column name="codejour" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

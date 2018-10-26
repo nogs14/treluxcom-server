@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Client" table="client" schema="public" optimistic-lock="version">
+        <id name="codepersonne" type="string">
+            <column name="codepersonne" length="40" />
+            <generator class="foreign">
+                <param name="property">personne</param>
+            </generator>
+        </id>
+        <one-to-one name="personne" class="com.treluxcom.metier.Personne" lazy="false" constrained="true"></one-to-one>
+        <property name="adresselivraison" type="string">
+            <column name="adresselivraison" length="254" />
+        </property>
+        <property name="categorie" type="string">
+            <column name="categorie" length="50" />
+        </property>
+        <property name="label" type="java.lang.Integer">
+            <column name="label" />
+        </property>
+        <property name="vip" type="java.lang.Boolean">
+            <column name="vip" />
+        </property>
+        <set name="groupes" table="detailsgroupe" inverse="false" lazy="false" fetch="select">
+            <key>
+                <column name="codepersonne" length="45" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.treluxcom.metier.Groupe">
+                <column name="codegroupe" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="panierclients" table="panierclient" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codeclient" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Panierclient" />
+        </set>
+    </class>
+</hibernate-mapping>

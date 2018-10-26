@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Produit" table="produit" schema="public" optimistic-lock="version">
+        <id name="codeproduit" type="string">
+            <column name="codeproduit" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="etagere" class="com.treluxcom.metier.Etagere" lazy="false" fetch="select">
+            <column name="codeetagere" />
+        </many-to-one>
+        <many-to-one name="famille" class="com.treluxcom.metier.Famille" lazy="false" fetch="select">
+            <column name="codefamille" length="254" not-null="true" />
+        </many-to-one>
+        <many-to-one name="panier" class="com.treluxcom.metier.Panier" lazy="false" fetch="select">
+            <column name="codepanier" length="50" />
+        </many-to-one>
+        <many-to-one name="stock" class="com.treluxcom.metier.Stock" lazy="false" fetch="select">
+            <column name="codestock" length="50" not-null="true" />
+        </many-to-one>
+        <property name="prixfournisseur" type="big_decimal">
+            <column name="prixfournisseur" precision="12" />
+        </property>
+        <property name="prixgerant" type="big_decimal">
+            <column name="prixgerant" precision="12" />
+        </property>
+        <property name="dateexpiration" type="date">
+            <column name="dateexpiration" length="13" />
+        </property>
+        <property name="remise" type="java.lang.Integer">
+            <column name="remise" />
+        </property>
+    </class>
+</hibernate-mapping>

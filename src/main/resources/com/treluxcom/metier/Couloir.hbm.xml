@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Couloir" table="couloir" schema="public" optimistic-lock="version">
+        <id name="codecouloir" type="int">
+            <column name="codecouloir" />
+            <generator class="assigned" />
+        </id>
+        <property name="libelle" type="string">
+            <column name="libelle" length="45" />
+        </property>
+        <set name="etageres" table="etagere" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codecouloir" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Etagere" />
+        </set>
+    </class>
+</hibernate-mapping>

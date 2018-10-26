@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Etagere" table="etagere" schema="public" optimistic-lock="version">
+        <id name="codeetagere" type="int">
+            <column name="codeetagere" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="couloir" class="com.treluxcom.metier.Couloir" lazy="false" fetch="select">
+            <column name="codecouloir" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="20" />
+        </property>
+        <property name="libelle" type="string">
+            <column name="libelle" length="40" />
+        </property>
+        <property name="capacite" type="java.lang.Integer">
+            <column name="capacite" />
+        </property>
+        <property name="occupation" type="java.lang.Integer">
+            <column name="occupation" />
+        </property>
+        <property name="plein" type="java.lang.Boolean">
+            <column name="plein" />
+        </property>
+        <set name="produits" table="produit" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codeetagere" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Produit" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Livreur" table="livreur" schema="public" optimistic-lock="version">
+        <id name="codepersonne" type="string">
+            <column name="codepersonne" length="40" />
+            <generator class="foreign">
+                <param name="property">employe</param>
+            </generator>
+        </id>
+        <one-to-one name="employe" class="com.treluxcom.metier.Employe" lazy="false" constrained="true"></one-to-one>
+        <property name="nombrelivraison" type="java.lang.Integer">
+            <column name="nombrelivraison" />
+        </property>
+        <set name="livraisons" table="livraison" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codelivreur" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Livraison" />
+        </set>
+    </class>
+</hibernate-mapping>

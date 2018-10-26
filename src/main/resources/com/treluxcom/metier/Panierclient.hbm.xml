@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Panierclient" table="panierclient" schema="public" optimistic-lock="version">
+        <id name="codepanier" type="string">
+            <column name="codepanier" length="50" />
+            <generator class="foreign">
+                <param name="property">panier</param>
+            </generator>
+        </id>
+        <many-to-one name="client" class="com.treluxcom.metier.Client" lazy="false" fetch="select">
+            <column name="codeclient" length="40" not-null="true" />
+        </many-to-one>
+        <one-to-one name="panier" class="com.treluxcom.metier.Panier" constrained="true"></one-to-one>
+        <property name="adresselivraison" type="string">
+            <column name="adresselivraison" length="50" />
+        </property>
+        <property name="typepaiement" type="string">
+            <column name="typepaiement" length="50" />
+        </property>
+        <property name="bonlivraison" type="string">
+            <column name="bonlivraison" length="50" />
+        </property>
+        <set name="livraisons" table="livraison" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codepanier" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Livraison" />
+        </set>
+    </class>
+</hibernate-mapping>

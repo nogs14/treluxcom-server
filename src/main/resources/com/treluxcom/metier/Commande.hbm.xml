@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Commande" table="commande" schema="public" optimistic-lock="version">
+        <id name="codecommande" type="string">
+            <column name="codecommande" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="fournisseur" class="com.treluxcom.metier.Fournisseur" lazy="false" fetch="select">
+            <column name="codefournisseur" length="40" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gerant" class="com.treluxcom.metier.Gerant" lazy="false" fetch="select">
+            <column name="codegerant" length="40" not-null="true" />
+        </many-to-one>
+        <many-to-one name="stock" class="com.treluxcom.metier.Stock" lazy="false" fetch="select">
+            <column name="codestock" length="50" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" length="50" />
+        </property>
+        <property name="datecommande" type="date">
+            <column name="datecommande" length="13" />
+        </property>
+        <property name="facture" type="string">
+            <column name="facture" length="254" />
+        </property>
+        <property name="etat" type="java.lang.Integer">
+            <column name="etat" />
+        </property>
+        <property name="libelle" type="string">
+            <column name="libelle" length="50" />
+        </property>
+        <set name="devises" table="devis" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codecommande" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Devis" />
+        </set>
+        <set name="lignecommandes" table="lignecommande" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codecommande" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Lignecommande" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Gerantprivilege" table="gerantprivilege" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.treluxcom.metier.GerantprivilegeId">
+            <key-property name="codepersonne" type="string">
+                <column name="codepersonne" length="40" />
+            </key-property>
+            <key-property name="codeprivilege" type="int">
+                <column name="codeprivilege" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="gerant" class="com.treluxcom.metier.Gerant" update="false" insert="false" lazy="false" fetch="select">
+            <column name="codepersonne" length="40" not-null="true" />
+        </many-to-one>
+        <many-to-one name="privilege" class="com.treluxcom.metier.Privilege" update="false" insert="false" lazy="false" fetch="select">
+            <column name="codeprivilege" not-null="true" />
+        </many-to-one>
+        <property name="datedebut" type="timestamp">
+            <column name="datedebut" length="29" />
+        </property>
+        <property name="datefin" type="timestamp">
+            <column name="datefin" length="29" />
+        </property>
+        <property name="illimite" type="java.lang.Boolean">
+            <column name="illimite" />
+        </property>
+        <property name="etat" type="java.lang.Boolean">
+            <column name="etat" />
+        </property>
+    </class>
+</hibernate-mapping>

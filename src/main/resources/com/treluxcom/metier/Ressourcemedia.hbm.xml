@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Ressourcemedia" table="ressourcemedia" schema="public" optimistic-lock="version">
+        <id name="coderessource" type="int">
+            <column name="coderessource" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="famille" class="com.treluxcom.metier.Famille" lazy="false" fetch="select">
+            <column name="codefamille" length="254" not-null="true" />
+        </many-to-one>
+        <property name="libelle" type="string">
+            <column name="libelle" length="50" />
+        </property>
+        <property name="localisation" type="string">
+            <column name="localisation" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

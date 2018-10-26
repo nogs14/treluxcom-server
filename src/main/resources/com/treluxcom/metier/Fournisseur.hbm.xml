@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 juin 2018 12:35:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.treluxcom.metier.Fournisseur" table="fournisseur" schema="public" optimistic-lock="version">
+        <id name="codepersonne" type="string">
+            <column name="codepersonne" length="40" />
+            <generator class="foreign">
+                <param name="property">personne</param>
+            </generator>
+        </id>
+        <one-to-one name="personne" class="com.treluxcom.metier.Personne" constrained="true" lazy="false"></one-to-one>
+        <property name="categorie" type="java.lang.Integer">
+            <column name="categorie" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="50" />
+        </property>
+        <property name="cotation" type="java.lang.Integer">
+            <column name="cotation" />
+        </property>
+        <set name="commandes" table="commande" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefournisseur" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Commande" />
+        </set>
+        <set name="devises" table="devis" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="codefournisseur" length="40" not-null="true" />
+            </key>
+            <one-to-many class="com.treluxcom.metier.Devis" />
+        </set>
+    </class>
+</hibernate-mapping>
