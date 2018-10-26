@@ -1,0 +1,32 @@
+Administrateur
+
+Login : 	diop@trelux.com
+Password : 	diop
+
+
+
+Gerant
+
+Login : 	ebbe@trelux.com
+Password : 	ebbe
+
+
+
+Caissier
+
+Login : 	sarr@trelux.com
+Password : 	sarr
+
+
+
+Fournisseurs
+
+Login : 	diaby@trelux.com
+Password : 	diaby
+
+
+
+Livreur
+
+Login : 	ada@trelux.com
+Password : 	ada
