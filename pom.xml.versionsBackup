@@ -23,7 +23,8 @@
     <developer>
       <name>Serigne Malick Ada Gaye</name>
       <email>sma.gaye94@gmail.com</email>
-      <organization>Aarujobb</organization>
+      <organization>com.github.smagaye</organization>
+      <organizationUrl>https://github.com/smagaye/</organizationUrl>
     </developer>
   </developers>
 
@@ -31,7 +32,7 @@
   <scm>
   <connection>scm:git:git://github.com/smagaye/treluxcom-server.git</connection>
   <developerConnection>scm:git:ssh://github.com:smagaye/treluxcom-server.git</developerConnection>
-  <url>https://github.com/smagaye/treluxcom-server </url>
+  <url>https://github.com/smagaye/treluxcom-server</url>
 </scm>
 
 <!-- Distribution Management and Authentication --> 
@@ -105,9 +106,8 @@
     
 
             <plugin>
-                <version>1.0-SNAPSHOT</version>
-                <groupId>com.treluxcom</groupId>
-                <artifactId>treluxcomServerSide</artifactId>
+                <groupId>com.github.smagaye</groupId>
+                <artifactId>treluxcom</artifactId>
                 <configuration>
                     <archive>
                         <manifest>

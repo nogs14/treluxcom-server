@@ -12,10 +12,10 @@
 
 <!-- License Information -->
 <licenses>
-  <license>
-    <name>MIT License</name>
-    <url>http://www.opensource.org/licenses/mit-license.php</url>
-  </license>
+    <license>
+        <name>The Apache Software License, Version 2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
 </licenses>
  
  <!-- Developer Information -->
@@ -23,7 +23,8 @@
     <developer>
       <name>Serigne Malick Ada Gaye</name>
       <email>sma.gaye94@gmail.com</email>
-      <organization>Aarujobb</organization>
+      <organization>com.github.smagaye</organization>
+      <organizationUrl>https://github.com/smagaye/</organizationUrl>
     </developer>
   </developers>
 
@@ -31,7 +32,7 @@
   <scm>
   <connection>scm:git:git://github.com/smagaye/treluxcom-server.git</connection>
   <developerConnection>scm:git:ssh://github.com:smagaye/treluxcom-server.git</developerConnection>
-  <url>https://github.com/smagaye/treluxcom-server </url>
+  <url>https://github.com/smagaye/treluxcom-server/tree/master</url>
 </scm>
 
 <!-- Distribution Management and Authentication --> 
@@ -50,7 +51,7 @@
         <plugins>
 
 <!-- Nexus Staging Maven Plugin for Deployment and Release-->
-<plugin>
+<!--plugin>
       <groupId>org.sonatype.plugins</groupId>
       <artifactId>nexus-staging-maven-plugin</artifactId>
       <version>1.6.7</version>
@@ -60,9 +61,9 @@
         <nexusUrl>https://oss.sonatype.org/</nexusUrl>
         <autoReleaseAfterClose>true</autoReleaseAfterClose>
       </configuration>
-    </plugin>
+    </plugin-->
 
-<!-- Javadoc and Sources Attachments -->
+<!-- Javadoc and Sources Attachments >
      <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-source-plugin</artifactId>
@@ -88,37 +89,24 @@
           </goals>
         </execution>
       </executions>
-    </plugin>
+    </plugin-->
 
-<!-- Nexus Staging Maven Plugin for Deployment and Release -->
+<!-- GPG Maven Plugin for Deployment and Release -->
 <plugin>
-  <groupId>org.sonatype.plugins</groupId>
-  <artifactId>nexus-staging-maven-plugin</artifactId>
-  <version>1.6.7</version>
-  <extensions>true</extensions>
-  <configuration>
-     <serverId>ossrh</serverId>
-     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-  </configuration>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <version>1.5</version>
+    <executions>
+        <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>sign</goal>
+            </goals>
+        </execution>
+    </executions>
 </plugin>
-    
 
-            <plugin>
-                <version>1.0-SNAPSHOT</version>
-                <groupId>com.treluxcom</groupId>
-                <artifactId>treluxcomServerSide</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>ServerRun.ServerRun</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -232,11 +220,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1200-jdbc4</version>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>postgresql-9.4.1209</artifactId>
-            <version>SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
